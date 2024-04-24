@@ -16,7 +16,7 @@ $rms = new PaymentChannel('YOUR_MERCHANT_ID','YOUR_VERIFY_KEY','SANDBOX_MODE'); 
 ```
 
 ## Direct Payment API:
-Read the [RazerMS Official API Documentation](https://github.com/RazerMS/Documentation-RazerMS_API_Spec/blob/aadeac8c3e1773311f644b639137a07b7a895b22/%5BOfficial%5D%20Razer%20Direct%20Server%20API%20v1.6.23.pdf)
+Read the [RazerMS Direct Server API Documentation](https://github.com/RazerMS/Documentation-RazerMS_API_Spec/blob/aadeac8c3e1773311f644b639137a07b7a895b22/%5BOfficial%5D%20Razer%20Direct%20Server%20API%20v1.6.23.pdf)
 
 Card Payment:
 ```php
@@ -49,7 +49,7 @@ $response = $rms->createPayment([
 ],'AUTO_REDIRECT'); //AUTO_REDIRECT will redirect the user to the payment page, default value will be false
 ```
 
-### Useful optional parameters:
+Useful optional parameters:
 ```php
     'ReturnURL' => '',
     'NotificationURL' => '',
@@ -133,3 +133,38 @@ $response = $rms->checkChannelAvailability($merchantID);
 ```
 
 # ApiChannel
+Read the [RazerMS Official API Documentation](https://github.com/RazerMS/Documentation-RazerMS_API_Spec/blob/main/%5Bofficial%20API%5D%20Razer%20API%20Spec%20for%20Merchant%20(v13.59).pdf)
+
+In your PHP file, include the following code at the top of your code:
+
+```php
+use CoolerProYT\RazermsPHP\ApiChannel;
+
+$rms = new ApiChannel('YOUR_MERCHANT_ID','YOUR_VERIFY_KEY','SANDBOX_MODE'); // SANDBOX_MODE default value is false
+```
+
+## Direct Status Requery
+This will trigger a query to the payment channel or bank status server and there are cases that bank
+status server is not in-sync with its payment server that might give different results, that leads to a defer
+update and will trigger a callback from PG server, once the status is synced and changed.
+
+```php
+$response = $rms->directStatusRequery([
+    'amount' => 'TRANSACTION_AMOUNT_OF_THE_txID',
+    'txID' => 'YOUR_txID',
+    'domain' => 'YOUR_MERCHANT_ID',
+    'skey' => md5('YOUR_txID'.'YOUR_MERCHANT_ID'.'YOUR_VERIFY_KEY'.'TRANSACTION_AMOUNT_OF_THE_txID')
+]);
+```
+
+## Indirect Status Requery
+Request & Response parameters are the same as Direct Status Requery but the format and parameters order of the responses are slightly different.
+
+```php
+$response = $rms->directStatusRequery([
+    'amount' => 'TRANSACTION_AMOUNT_OF_THE_txID',
+    'txID' => 'YOUR_txID',
+    'domain' => 'YOUR_MERCHANT_ID',
+    'skey' => md5('YOUR_txID'.'YOUR_MERCHANT_ID'.'YOUR_VERIFY_KEY'.'TRANSACTION_AMOUNT_OF_THE_txID')
+]);
+```
