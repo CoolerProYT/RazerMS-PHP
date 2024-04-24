@@ -60,3 +60,10 @@ If `AUTO_REDIRECT` is set to false, you can redirect the user to the payment pag
 ```php
 $rms->redirectPayment(json_decode($response)->TxnData);
 ```
+
+## Check channel availability:
+
+This function returns the availability of all channels enabled for a particular merchantID
+```php
+$response = $rms->checkChannelAvailability($merchantID);
+```

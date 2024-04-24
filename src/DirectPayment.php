@@ -50,5 +50,21 @@ class DirectPayment
         echo '<script>document.getElementById("paymentForm").submit();</script>';
     }
 
+    public function channelStatus($merchantID){
+        $datetime = date('YmdHis');
+        $curl = curl_init($this->url . '/RMS/API/chkstat/channel_status.php');
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, [
+            'merchantID' => $merchantID,
+            'datetime' => $datetime,
+            'skey' => HASH_HMAC('sha256',$datetime.$merchantID,$this->verify_key)
+        ]);
+
+        $response = json_decode(curl_exec($curl));
+        curl_close($curl);
+
+        return json_encode($response);
+    }
 }
 ?>
