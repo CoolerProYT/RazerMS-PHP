@@ -1,0 +1,22 @@
+{
+    "name": "coolerproyt/razerms-php",
+    "description": "A php package for RazerMS API.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "CoolerProYT\\RazermsPHP\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "CoolerProYT",
+            "email": "coolerproyt@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "ext-curl": "*"
+    },
+    "version": "1.0.0"
+}
