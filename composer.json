@@ -16,8 +16,7 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "ext-curl": "*",
-        "ext-http": "*"
+        "ext-curl": "*"
     },
     "version": "1.0.0"
 }
