@@ -5,11 +5,14 @@ To install the package, run the following command:
 composer require coolerproyt/razerms-php
 ```
 
-In your PHP file, include the following code at the top of your code:
-```php
-use CoolerProYT\RazermsPHP\DirectPayment;
+# PaymentChannel
 
-$rms = new RazerMS('YOUR_MERCHANT_ID','YOUR_VERIFY_KEY','SANDBOX_MODE'); // SANDBOX_MODE default value is false
+In your PHP file, include the following code at the top of your code:
+
+```php
+use CoolerProYT\RazermsPHP\PaymentChannel;
+
+$rms = new PaymentChannel('YOUR_MERCHANT_ID','YOUR_VERIFY_KEY','SANDBOX_MODE'); // SANDBOX_MODE default value is false
 ```
 
 ## Direct Payment API:
@@ -61,9 +64,11 @@ If `AUTO_REDIRECT` is set to false, you can redirect the user to the payment pag
 $rms->redirectPayment(json_decode($response)->TxnData);
 ```
 
-## Check channel availability:
+## Channel Status API:
 
 This function returns the availability of all channels enabled for a particular merchantID
 ```php
 $response = $rms->checkChannelAvailability($merchantID);
 ```
+
+# ApiChannel

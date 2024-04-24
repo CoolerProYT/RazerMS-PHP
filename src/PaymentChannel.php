@@ -3,7 +3,7 @@ namespace CoolerProYT\RazermsPHP;
 
 use http\Exception\InvalidArgumentException;
 
-class DirectPayment
+class PaymentChannel
 {
     private string $secret_key;
     private string $verify_key;
