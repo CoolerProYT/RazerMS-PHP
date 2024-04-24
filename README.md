@@ -7,8 +7,7 @@ composer require coolerproyt/razerms-php
 
 In your PHP file, include the following code at the top of your code:
 ```php
-namespace CoolerproYT\RazermsPHP;
-require_once 'vendor/autoload.php';
+use CoolerProYT\RazermsPHP\DirectPayment;
 
 $rms = new RazerMS('YOUR_MERCHANT_ID','YOUR_VERIFY_KEY','SANDBOX_MODE'); // SANDBOX_MODE default value is false
 ```
