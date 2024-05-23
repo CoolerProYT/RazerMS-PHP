@@ -61,7 +61,7 @@ Useful optional parameters:
 
 If `AUTO_REDIRECT` is set to false, you can redirect the user to the payment page by using the following code:
 ```php
-$rms->redirectPayment(json_decode($response)->TxnData);
+$rms->redirectToPaymentPage(json_decode($response)->TxnData);
 ```
 
 ## Livewire Auto Redirect
@@ -120,7 +120,7 @@ class PaymentController extends Controller
     public function pay(Request $request){
         $rms = new PaymentChannel('YOUR_MERCHANT_ID','YOUR_VERIFY_KEY','SANDBOX_MODE');
         
-        $rms->redirectPayment($request->session()->get('postData'));
+        $rms->redirectToPaymentPage($request->session()->get('postData'));
     }
 }
 ```
